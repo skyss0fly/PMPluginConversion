@@ -1,0 +1,6 @@
+name: PMPluginConversiom
+api: 5.0.0
+version: 1.0.0-DEV
+main: skyss0fly\PMConvert\Convert
+author: skyss0fly
+description: An advanced plugin conversion plugin plugin for PocketMine-MP 5
