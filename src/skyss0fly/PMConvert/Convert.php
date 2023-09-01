@@ -31,13 +31,16 @@ class Convert extends PluginBase {
     }
 public function onComplete() {
 
-            $sender->sendMessage("Conversion completed successfully!");
+            $sender->sendMessage("Conversion completed successfully! \nDisclaimer: This Plugin May Not fix all issues, please be weary of that:)");
 
 }
     private function convertPhp7ToPhp8($code) {
+        $leveloptions = ["getLevel", "Level" , "levelName", "GetLevelByName"];
+        $worldoptions = ["getWorld", "World", "FolderName" , "GetWorldByName"];
         // Replace deprecated functions
         $code = str_replace("mysql_", "mysqli_", $code);
-        
+        // replace level to workd
+        $code = str_replace($leveloptions , $worldoptions , $code);
         // Replace deprecated syntax
         $code = preg_replace("/\b(array)\s*\(/", "[$1](", $code);
         
@@ -62,7 +65,7 @@ public function onComplete() {
         // Update arrow functions
         $code = preg_replace("/\b(function)\s*\((.*?)\)\s*=>\s*(.*?)\b/", "fn($2) => $3", $code);
 
-        $code = preg_replace(range(3.0.0, 3.27.0), "5.0.0" ,$code);
+        $code = str_replace(range(3.0.0, 3.27.0), "5.0.0" ,$code);
         $dest  = glob('Plugins/'. $pluginName . '/*');
 file_put_contents($dest($code));
         $done = $this->onComplete();
