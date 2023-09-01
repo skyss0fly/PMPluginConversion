@@ -12,8 +12,6 @@ public $code = $Code;
     $this->getLogger("Successfully Loaded PmPluginConversion. usage: /convert PluginName PMAPIVersion");
   }
 
-
-
 public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
     if ($command->getName() === "convert") {
         if (count($args) < 2) {
@@ -25,6 +23,7 @@ public function onCommand(CommandSender $sender, Command $command, string $label
         $pmapiversion = $args[1];
         
         // Your code to handle the conversion using $pluginName and $pmapiversion
+        $convertedCode = convertPhp7ToPhp8($pluginName);
         
         $sender->sendMessage("Conversion completed successfully!");
         return true;
@@ -32,6 +31,7 @@ public function onCommand(CommandSender $sender, Command $command, string $label
     
     return false;
 }
+
   
 function convertPhp7ToPhp8($code) {
     // Replace deprecated functions
