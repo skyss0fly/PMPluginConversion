@@ -6,7 +6,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 
-class Main extends PluginBase {
+class Convert extends PluginBase {
     public function onLoad(): void {
         $this->getLogger()->info("Successfully Loaded PmPluginConversion. usage: /convert PluginName PMAPIVersion");
     }
