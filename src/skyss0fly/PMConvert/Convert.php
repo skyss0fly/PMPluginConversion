@@ -8,18 +8,17 @@ use pocketmine\command\CommandSender;
 
 class Convert extends PluginBase {
     public function onLoad(): void {
-        $this->getLogger()->info("Successfully Loaded PmPluginConversion. usage: /convert PluginName PMAPIVersion");
+        $this->getLogger()->info("Successfully Loaded PmPluginConversion. usage: /convert PluginName ");
     }
 
     public function onCommand(CommandSender $sender, Command $command, string $label, array $args): bool {
         if ($command->getName() === "convert") {
-            if (count($args) < 2) {
-                $sender->sendMessage("Usage: /convert pluginname pmapiversion");
+            if (count($args) < 1) {
+                $sender->sendMessage("Usage: /convert pluginname ");
                 return false;
             }
             
             $pluginName = $args[0];
-            $pmapiversion = $args[1];
             $plugintoconvert  = glob('Plugins/'. $pluginName . '/*');
             // Your code to Handle the conversion using $pluginName and $pmapiversion
             $convertedCode = $this->convertPhp7ToPhp8($plugintoconvert);
