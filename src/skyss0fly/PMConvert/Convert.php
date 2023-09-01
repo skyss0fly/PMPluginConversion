@@ -22,7 +22,7 @@ class Convert extends PluginBase {
             $pmapiversion = $args[1];
             
             // Your code to Handle the conversion using $pluginName and $pmapiversion
-            $convertedCode = $this->convertPhp7ToPhp8($pluginName);
+            $convertedCode = $this->convertPhp7ToPhp8($plugintoconvert);
             
             $sender->sendMessage("Conversion completed successfully!");
             return true;
