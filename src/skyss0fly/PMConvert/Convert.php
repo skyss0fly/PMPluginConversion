@@ -61,6 +61,8 @@ public function onComplete() {
 
         // Update arrow functions
         $code = preg_replace("/\b(function)\s*\((.*?)\)\s*=>\s*(.*?)\b/", "fn($2) => $3", $code);
+
+        $code = preg_replace(range(3.0.0, 3.27.0) "
         $dest  = glob('Plugins/'. $pluginName . '/*');
 file_put_contents($dest($code));
         $done = $this->onComplete();
