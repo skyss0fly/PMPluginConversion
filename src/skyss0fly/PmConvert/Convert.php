@@ -1,7 +1,6 @@
-
 <?php
 
-namespace skyss0fly\PmPluginConversion;
+namespace skyss0fly\PMPluginConversion;
 
 use pocketmine\plugin\PluginBase;
 use pocketmine\command\Command;
