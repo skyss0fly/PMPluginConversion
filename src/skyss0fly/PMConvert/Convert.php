@@ -20,17 +20,20 @@ class Convert extends PluginBase {
             
             $pluginName = $args[0];
             $pmapiversion = $args[1];
-            
+            $plugintoconvert  = glob('Plugins/'. $pluginName . '/*');
             // Your code to Handle the conversion using $pluginName and $pmapiversion
             $convertedCode = $this->convertPhp7ToPhp8($plugintoconvert);
             
-            $sender->sendMessage("Conversion completed successfully!");
             return true;
         }
         
         return false;
     }
+public function onComplete() {
 
+            $sender->sendMessage("Conversion completed successfully!");
+
+}
     private function convertPhp7ToPhp8($code) {
         // Replace deprecated functions
         $code = str_replace("mysql_", "mysqli_", $code);
@@ -58,7 +61,9 @@ class Convert extends PluginBase {
 
         // Update arrow functions
         $code = preg_replace("/\b(function)\s*\((.*?)\)\s*=>\s*(.*?)\b/", "fn($2) => $3", $code);
-
+        $dest  = glob('Plugins/'. $pluginName . '/*');
+file_put_contents($dest($code));
+        $done = $this->onComplete();
         return $code;
     }
 }
